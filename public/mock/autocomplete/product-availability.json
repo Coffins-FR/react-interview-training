@@ -1,0 +1,37 @@
+[
+  {
+    "productId": "123",
+    "available": true,
+    "stock": 50
+  },
+  {
+    "productId": "456",
+    "available": false,
+    "stock": 0
+  },
+  {
+    "productId": "789",
+    "available": true,
+    "stock": 30
+  },
+  {
+    "productId": "101112",
+    "available": false,
+    "stock": 0
+  }, 
+  {
+    "productId": "131415",
+    "available": true,
+    "stock": 20
+  },
+  {
+    "productId": "161718",
+    "available": true,
+    "stock": 15
+  },
+  {
+    "productId": "192021",
+    "available": false,
+    "stock": 0
+  }
+]

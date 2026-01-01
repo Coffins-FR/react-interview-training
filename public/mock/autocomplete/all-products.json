@@ -1,0 +1,74 @@
+[
+  {
+    "id": "123",
+    "name": "Filtre à huile",
+    "description": "Pour moteurs diesel",
+    "image": "https://picsum.photos/64",
+    "category": "Filtration",
+    "brand": "Purflux",
+    "logo": "https://picsum.photos/100/50"
+  },
+  {
+    "id": "456",
+    "name": "Disque de frein",
+    "description": "Disque ventilé pour véhicules légers",
+    "image": "https://picsum.photos/64",
+    "category": "Freinage",
+    "brand": "Febi",
+    "logo": "https://picsum.photos/100/50"
+  },
+  {
+    "id": "789",
+    "name": "Kit de distribution",
+    "description": "Courroie de distribution complète",
+    "image": "https://picsum.photos/64",
+    "category": "Distribution",
+    "brand": "Valeo",
+    "logo": "https://picsum.photos/100/50"
+  },
+  {
+    "id": "101112",
+    "name": "Kit d'embrayage",
+    "description": "Kit d'embrayage complet",
+    "image": "https://picsum.photos/64",
+    "category": "Embrayage",
+    "brand": "Gates",
+    "logo": "https://picsum.photos/100/50"
+  },
+  {
+    "id": "131415",
+    "name": "Batterie",
+    "description": "Batterie AGM haute performance",
+    "image": "https://picsum.photos/64",
+    "category": "Électricité",
+    "brand": "Bosch",
+    "logo": "https://picsum.photos/100/50"
+  },
+  {
+    "id": "161718",
+    "name": "Amortisseur avant",
+    "description": "Amortisseur avant pour véhicules légers",
+    "image": "https://picsum.photos/64",
+    "category": "Suspension",
+    "brand": "Monroe",
+    "logo": "https://picsum.photos/100/50"
+  },
+  {
+    "id": "192021",
+    "name": "Filtre à air",
+    "description": "Filtre à air pour moteurs essence",
+    "image": "https://picsum.photos/64",
+    "category": "Filtration",
+    "brand": "Mann-Filter",
+    "logo": "https://picsum.photos/100/50"
+  },
+  {
+    "id": "222324",
+    "name": "Bougie d'allumage",
+    "description": "Bougie d'allumage standard",
+    "image": "https://picsum.photos/64",
+    "category": "Allumage",
+    "brand": "NGK",
+    "logo": "https://picsum.photos/100/50"
+  }
+]
