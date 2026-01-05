@@ -1,1 +1,35 @@
 @import "tailwindcss";
+
+.btn-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+}
+
+.btn-secondary {
+  @apply bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+}
+
+.btn-success {
+  @apply bg-green-600 text-white hover:bg-green-700 focus:ring-green-500;
+}
+
+.btn-warning {
+  @apply bg-yellow-500 text-white hover:bg-yellow-600 focus:ring-yellow-400;
+}
+
+.btn-ghost {
+  @apply bg-transparent text-blue-600 hover:bg-blue-50 focus:ring-blue-500;
+}
+
+.c-card--todos {
+  @apply text-gray-700;
+}
+.c-card--running {
+  @apply text-pink-600;
+}
+.c-card--completed {
+  @apply text-green-700;
+}
