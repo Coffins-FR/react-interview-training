@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { DndContext, type DragMoveEvent } from "@dnd-kit/core";
-import Modal from "../../components/Modal/Modal";
-import DndModalForm from "../../containers/DndModalForm";
-import TodoContainer from "../../containers/TodoContainer";
-import DndTodoAppStateContext from "../../context/DndTodoApp/context";
+import Modal from "../../shared/components/Modal/Modal";
+import DndModalForm from "../container/ModalForm";
+import TodoContainer from "../container/TodoContainer";
+import DndTodoAppStateContext from "../context/context";
 
-const DndTodoList = () => {
+const TodoList = () => {
   const context = useContext(DndTodoAppStateContext);
 
   if (!context) {
@@ -58,4 +58,4 @@ const DndTodoList = () => {
   );
 };
 
-export default DndTodoList;
+export default TodoList;

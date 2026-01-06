@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { useForm } from "@tanstack/react-form";
-import Button from "../../components/Button/Button";
-import { type DndItem } from "../../context/DndTodoApp/interface";
-import DndTodoAppStateContext from "../../context/DndTodoApp/context";
+import Button from "../../../shared/components/Button/Button";
+import { type TodoItem } from "../../context/interface";
+import DndTodoAppStateContext from "../../context/context";
 import { redirect } from "react-router";
 
-const DndModalForm = () => {
+const ModalForm = () => {
   const context = useContext(DndTodoAppStateContext);
 
   if (!context) {
@@ -14,7 +14,7 @@ const DndModalForm = () => {
 
   const { setTaskState } = context;
 
-  const defaimultValues: Partial<DndItem> = {
+  const defaimultValues: Partial<TodoItem> = {
     id: "",
     content: "",
     title: "",
@@ -83,4 +83,4 @@ const DndModalForm = () => {
   );
 };
 
-export default DndModalForm;
+export default ModalForm;

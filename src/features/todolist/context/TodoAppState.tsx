@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import type { DndAppState, DndItem } from "./interface";
+import type { AppState, TodoItem } from "./interface";
 import DndTodoAppStateContext from "./context";
 
-const initialState: DndAppState = {
+const initialState: AppState = {
   todos: [],
   running: [],
   completed: [],
@@ -11,7 +11,7 @@ const initialState: DndAppState = {
 export const DndTodoAppStateProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
-  const [state, setState] = useState<DndAppState>(() => {
+  const [state, setState] = useState<AppState>(() => {
     const savedState = localStorage.getItem("dndAppState");
     return savedState ? JSON.parse(savedState) : initialState;
   });
@@ -20,14 +20,14 @@ export const DndTodoAppStateProvider: React.FC<{
     localStorage.setItem("dndAppState", JSON.stringify(state));
   }, [state]);
 
-  const setTaskState = (item: DndItem, type: keyof DndAppState) => {
+  const setTaskState = (item: TodoItem, type: keyof AppState) => {
     setState((prev) => ({
       ...prev,
       [type]: [...prev[type], item],
     }));
   };
 
-  const getTaskById = (id: string, type: keyof DndAppState) => {
+  const getTaskById = (id: string, type: keyof AppState) => {
     return state[type].find((item) => item.id === id);
   };
 
@@ -35,13 +35,13 @@ export const DndTodoAppStateProvider: React.FC<{
     return Object.values(state).flat();
   };
 
-  const switchTaskState = (itemId: string, toType: keyof DndAppState) => {
+  const switchTaskState = (itemId: string, toType: keyof AppState) => {
     setState((prev) => {
       const itemToMove = Object.values(prev)
         .flat()
         .find((item) => item.id === itemId);
       if (!itemToMove) return prev;
-      const fromType = itemToMove.type as keyof DndAppState;
+      const fromType = itemToMove.type as keyof AppState;
 
       return {
         ...prev,
@@ -51,7 +51,7 @@ export const DndTodoAppStateProvider: React.FC<{
     });
   };
 
-  const deleteTask = (itemId: string, fromType: keyof DndAppState) => {
+  const deleteTask = (itemId: string, fromType: keyof AppState) => {
     setState((prev) => ({
       ...prev,
       [fromType]: prev[fromType].filter((item) => item.id !== itemId),

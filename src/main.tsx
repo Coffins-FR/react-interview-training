@@ -3,9 +3,9 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import { BrowserRouter, Routes, Route } from "react-router";
-import Autocomplete from "./page/Autocomplete";
-import DndTodoList from "./page/DndTodoList";
-import DndTodoAppStateProvider from "./context/DndTodoApp";
+import Autocomplete from "./features/autocomplete/page";
+import DndTodoList from "./features/todolist/page";
+import DndTodoAppStateProvider from "./features/todolist/context/index.ts";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

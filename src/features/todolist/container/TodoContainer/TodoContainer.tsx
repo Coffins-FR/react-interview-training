@@ -1,13 +1,13 @@
-import Draggable from "../Draggable";
-import Droppable from "../Dropppable";
-import type { DndItem, DndAppState } from "../../context/DndTodoApp/interface";
-import TodoCard from "../../components/Cards/TodoCard";
+import Draggable from "../../../shared/containers/Draggable";
+import Droppable from "../../../shared/containers/Dropppable";
+import type { TodoItem, AppState } from "../../context/interface";
+import TodoCard from "../../components/Card";
 import clsx from "clsx";
 
 interface TodoContainerProps {
   title: string;
-  type: keyof DndAppState;
-  items: DndItem[];
+  type: keyof AppState;
+  items: TodoItem[];
   className?: string;
 }
 

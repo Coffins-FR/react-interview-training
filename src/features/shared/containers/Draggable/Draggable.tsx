@@ -1,9 +1,10 @@
 import React from "react";
-import { type DndItem } from "../../context/DndTodoApp/interface";
 import { useDraggable } from "@dnd-kit/core";
 import clsx from "clsx";
 
-interface DraggableProps extends Pick<DndItem, "id" | "type"> {
+interface DraggableProps {
+  id: string;
+  type: string;
   children: React.ReactNode;
 }
 

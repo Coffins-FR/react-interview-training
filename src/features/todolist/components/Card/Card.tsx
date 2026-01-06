@@ -1,9 +1,9 @@
-import type { DndItem } from "../../../context/DndTodoApp/interface";
+import type { TodoItem } from "../../context/interface"; // Update the path if the file is named differently
 import clsx from "clsx";
 
-type TodoCardProps = Pick<DndItem, "title" | "content" | "type">;
+type CardProps = Pick<TodoItem, "title" | "content" | "type">;
 
-const TodoCard = ({ content, title, type = "todos" }: TodoCardProps) => {
+const Card = ({ content, title, type = "todos" }: CardProps) => {
   const cardClassName = clsx("p-4 border-l-4 bg-white shadow-sm", {
     [`c-card--${type}`]: !!type,
   });
@@ -15,4 +15,4 @@ const TodoCard = ({ content, title, type = "todos" }: TodoCardProps) => {
   );
 };
 
-export default TodoCard;
+export default Card;
