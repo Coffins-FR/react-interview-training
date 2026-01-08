@@ -10,7 +10,9 @@ export interface ProductPrice {
   currency: string;
 }
 
-export interface AllProducts {
+export interface Product
+  extends Partial<Omit<ProductPrice, "productId">>,
+    Partial<Omit<ProductAvailability, "productId">> {
   id: string;
   name: string;
   description: string;
@@ -18,6 +20,8 @@ export interface AllProducts {
   brand: string;
   category: string;
   logo: string;
-  availability?: ProductAvailability;
-  price: ProductPrice;
 }
+
+export type ProductsResponse = Product[];
+export type ProductAvailabilityResponse = ProductAvailability[];
+export type ProductPriceResponse = ProductPrice[];

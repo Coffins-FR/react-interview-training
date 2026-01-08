@@ -1,30 +1,52 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo } from "react";
 
 import Input from "../../shared/components/Input";
 import useFetchAll from "../../shared/hooks/useFetchAll/useFetchAll";
+import useFetch from "../../shared/hooks/useFetch/useFetch";
 
 import type {
-  ProductAvailability,
-  ProductPrice,
-  AllProducts,
+  ProductAvailabilityResponse,
+  ProductPriceResponse,
+  ProductsResponse,
 } from "./interface";
 
 const Autocomplete = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [suggestions, setSuggestions] = useState<AllProducts[]>([]);
+  const [suggestions, setSuggestions] = useState<ProductsResponse>([]);
+
+  const { data: products } = useFetch<ProductsResponse>(
+    "/mock/autocomplete/all-products.json"
+  );
 
   const {
-    data: [products, availability, prices],
+    data: [availability, prices],
     loading,
     errors,
-  } = useFetchAll<AllProducts | ProductAvailability | ProductPrice>([
+  } = useFetchAll<ProductAvailabilityResponse | ProductPriceResponse>([
     "/mock/autocomplete/all-products.json",
     "/mock/autocomplete/product-availability.json",
     "/mock/autocomplete/product-prices.json",
   ]);
 
+  const arraysFusion = useMemo(() => {
+    return products?.reduce((acc, current) => {
+      const availabilityItem = availability?.find(
+        (avail) => avail.productId === current.id
+      );
+      const priceItem = prices.find((price) => price.productId === current.id);
+      acc.push({
+        ...current,
+        ...availabilityItem,
+        ...priceItem!,
+      });
+      return acc;
+    }, [] as ProductsResponse);
+  }, [products, availability, prices]);
+
   if (loading.some((l) => l)) return <div>Loading...</div>;
   if (errors.some((e) => e)) return <div>Error: {errors.find((e) => e)}</div>;
+
+  console.log("Merged Data:", arraysFusion);
 
   const handleChange = () => {
     // Handle input change
@@ -34,27 +56,11 @@ const Autocomplete = () => {
       return;
     }
 
-    const filteredProducts = (products as unknown as AllProducts[]).filter(
-      (product) => product.name.toLowerCase().includes(value.toLowerCase())
+    setSuggestions(
+      arraysFusion!.filter((product) =>
+        product.name.toLowerCase().includes(value.toLowerCase())
+      )
     );
-
-    // Enrich products with availability and price
-    const enrichedProducts = filteredProducts.map((product) => {
-      const productAvailability = (
-        availability as unknown as ProductAvailability[]
-      ).find((avail) => avail.productId === product.id);
-      const productPrice = (prices as unknown as ProductPrice[]).find(
-        (price) => price.productId === product.id
-      );
-
-      return {
-        ...product,
-        availability: productAvailability,
-        price: productPrice!,
-      };
-    });
-
-    setSuggestions(enrichedProducts);
   };
 
   console.log("Suggestions:", suggestions);

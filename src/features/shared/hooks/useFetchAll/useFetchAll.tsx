@@ -2,8 +2,8 @@ import React, { useCallback } from "react";
 import axios from "axios";
 
 const useFetchAll = <T,>(urls: string[]) => {
-  const [data, setData] = React.useState<(T | null)[]>(
-    Array(urls.length).fill(null)
+  const [data, setData] = React.useState<T[]>(
+    Array(urls.length).fill(undefined)
   );
   const [loading, setLoading] = React.useState<boolean[]>(
     Array(urls.length).fill(true)
