@@ -1,0 +1,193 @@
+{
+  "formId": "user_onboarding_v2",
+  "title": "User Onboarding",
+  "description": "Please complete the form to create your account",
+  "submit": {
+    "label": "Create Account",
+    "endpoint": "/api/onboarding",
+    "method": "POST"
+  },
+  "layout": {
+    "type": "grid",
+    "columns": 2,
+    "gap": "16px"
+  },
+  "sections": [
+    {
+      "id": "personal_info",
+      "title": "Personal Information",
+      "fields": [
+        {
+          "id": "firstName",
+          "type": "text",
+          "label": "First Name",
+          "placeholder": "John",
+          "required": true,
+          "validation": {
+            "minLength": 2,
+            "maxLength": 50
+          }
+        },
+        {
+          "id": "lastName",
+          "type": "text",
+          "label": "Last Name",
+          "placeholder": "Doe",
+          "required": true,
+          "validation": {
+            "minLength": 2,
+            "maxLength": 50
+          }
+        },
+        {
+          "id": "email",
+          "type": "email",
+          "label": "Email Address",
+          "required": true,
+          "validation": {
+            "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+          },
+          "asyncValidation": {
+            "endpoint": "/api/validate/email",
+            "method": "POST",
+            "debounceMs": 400
+          }
+        },
+        {
+          "id": "birthDate",
+          "type": "date",
+          "label": "Date of Birth",
+          "required": true,
+          "validation": {
+            "minAge": 18
+          }
+        }
+      ]
+    },
+    {
+      "id": "account_details",
+      "title": "Account Details",
+      "fields": [
+        {
+          "id": "password",
+          "type": "password",
+          "label": "Password",
+          "required": true,
+          "validation": {
+            "minLength": 10,
+            "rules": [
+              {
+                "type": "uppercase",
+                "message": "Must contain an uppercase letter"
+              },
+              { "type": "number", "message": "Must contain a number" },
+              {
+                "type": "specialChar",
+                "message": "Must contain a special character"
+              }
+            ]
+          }
+        },
+        {
+          "id": "confirmPassword",
+          "type": "password",
+          "label": "Confirm Password",
+          "required": true,
+          "dependsOn": {
+            "field": "password",
+            "rule": "match"
+          }
+        }
+      ]
+    },
+    {
+      "id": "preferences",
+      "title": "Preferences",
+      "fields": [
+        {
+          "id": "role",
+          "type": "select",
+          "label": "Role",
+          "required": true,
+          "options": [
+            { "label": "Developer", "value": "developer" },
+            { "label": "Designer", "value": "designer" },
+            { "label": "Manager", "value": "manager" }
+          ]
+        },
+        {
+          "id": "techStack",
+          "type": "multi-select",
+          "label": "Preferred Tech Stack",
+          "visibleWhen": {
+            "field": "role",
+            "equals": "developer"
+          },
+          "optionsSource": {
+            "type": "api",
+            "endpoint": "/api/tech-stacks",
+            "method": "GET"
+          },
+          "validation": {
+            "minSelected": 1
+          }
+        },
+        {
+          "id": "designTools",
+          "type": "checkbox-group",
+          "label": "Design Tools",
+          "visibleWhen": {
+            "field": "role",
+            "equals": "designer"
+          },
+          "options": [
+            { "label": "Figma", "value": "figma" },
+            { "label": "Sketch", "value": "sketch" },
+            { "label": "Adobe XD", "value": "adobe_xd" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "notifications",
+      "title": "Notifications",
+      "fields": [
+        {
+          "id": "enableNotifications",
+          "type": "toggle",
+          "label": "Enable Notifications",
+          "defaultValue": true
+        },
+        {
+          "id": "notificationChannels",
+          "type": "checkbox-group",
+          "label": "Notification Channels",
+          "visibleWhen": {
+            "field": "enableNotifications",
+            "equals": true
+          },
+          "options": [
+            { "label": "Email", "value": "email" },
+            { "label": "SMS", "value": "sms" },
+            { "label": "Push Notifications", "value": "push" }
+          ],
+          "validation": {
+            "minSelected": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "terms",
+      "title": "Legal",
+      "fields": [
+        {
+          "id": "acceptTerms",
+          "type": "checkbox",
+          "label": "I accept the Terms and Conditions",
+          "required": true
+        }
+      ]
+    }
+  ]
+}
