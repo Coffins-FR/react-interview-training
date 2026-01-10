@@ -1,24 +1,34 @@
 import { useState, useEffect } from "react";
 
-const useDetectDeviceSize = () => {
-  const [deviceSize, setDeviceSize] = useState<"mobile" | "tablet" | "desktop">(
-    () => {
-      if (typeof window !== "undefined") {
-        const width = window.innerWidth;
-        if (width < 768) return "mobile";
-        if (width < 1024) return "tablet";
-        return "desktop";
-      }
-      return "desktop"; // Default to desktop for server-side rendering
+type DeviceSize = "mobile" | "tablet" | "desktop";
+type DeviceSizes = {
+  mobile: number;
+  tablet: number;
+  desktop?: number;
+};
+
+export const DEVICE_SIZES: DeviceSizes = {
+  mobile: 768,
+  tablet: 1024,
+};
+
+const useDetectDeviceSize = ({ mobile, tablet }: DeviceSizes) => {
+  const [deviceSize, setDeviceSize] = useState<DeviceSize>(() => {
+    if (typeof window !== "undefined") {
+      const width = window.innerWidth;
+      if (width < mobile) return "mobile";
+      if (width < tablet) return "tablet";
+      return "desktop";
     }
-  );
+    return "desktop"; // Default to desktop for server-side rendering
+  });
 
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      if (width < 768) {
+      if (width < mobile) {
         setDeviceSize("mobile");
-      } else if (width < 1024) {
+      } else if (width < tablet) {
         setDeviceSize("tablet");
       } else {
         setDeviceSize("desktop");
@@ -29,7 +39,7 @@ const useDetectDeviceSize = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [mobile, tablet]);
 
   return deviceSize;
 };
