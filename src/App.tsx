@@ -10,6 +10,9 @@ function App() {
         <li className="hover:text-blue-800 transition ease-in-out">
           <Link to="/page/dndtodolist">Dnd Todo List</Link>
         </li>
+        <li className="hover:text-blue-800 transition ease-in-out">
+          <Link to="/page/dogogallery">Dogo Gallery</Link>
+        </li>
       </ul>
     </div>
   );

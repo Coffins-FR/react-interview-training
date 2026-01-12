@@ -20,7 +20,14 @@ const useFetch = <T,>(url: string) => {
   useEffect(() => {
     fetchData();
   }, [url, fetchData]);
-  return { data, loading, error };
+
+  const refetch = () => {
+    setLoading(true);
+    setError(null);
+    fetchData();
+  };
+
+  return { data, loading, error, refetch };
 };
 
 export default useFetch;
