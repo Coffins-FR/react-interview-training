@@ -4,6 +4,7 @@ import Modal from "../../shared/components/Modal/Modal";
 import DndModalForm from "../container/ModalForm";
 import TodoContainer from "../container/TodoContainer";
 import DndTodoAppStateContext from "../context/context";
+import { ThemeDropdown } from "@/src/features/shared/components/Theme/ThemeDropdown/ThemeDropdown";
 
 const TodoList = () => {
   const context = useContext(DndTodoAppStateContext);
@@ -28,7 +29,8 @@ const TodoList = () => {
   };
 
   return (
-    <div className="p-16 h-screen bg-gray-50">
+    <div className="p-16 h-screen dark:bg-background">
+      <ThemeDropdown />
       <h1 className="font-bold text-3xl mb-16">Dnd Todo List Page</h1>
       <DndContext onDragEnd={handleDragEnd}>
         <Modal

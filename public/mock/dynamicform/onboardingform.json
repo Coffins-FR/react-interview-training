@@ -45,12 +45,7 @@
           "label": "Email Address",
           "required": true,
           "validation": {
-            "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
-          },
-          "asyncValidation": {
-            "endpoint": "/api/validate/email",
-            "method": "POST",
-            "debounceMs": 400
+            "pattern": "/^(?!.)(?!.*..)([a-z0-9_'+-.]*)[a-z0-9_+-]@([a-z0-9][a-z0-9-]*.)+[a-z]{2,}$/i"
           }
         },
         {
@@ -125,7 +120,7 @@
           },
           "optionsSource": {
             "type": "api",
-            "endpoint": "/api/tech-stacks",
+            "endpoint": "/mock/dynamicform/tech-stacks.json",
             "method": "GET"
           },
           "validation": {

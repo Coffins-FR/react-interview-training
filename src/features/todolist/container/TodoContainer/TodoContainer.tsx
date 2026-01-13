@@ -13,7 +13,7 @@ interface TodoContainerProps {
 
 const TodoContainer = ({ items, type, className }: TodoContainerProps) => {
   const mainClasseName = clsx(
-    "p-4 border border-gray-300 rounded-md min-w-[250px] bg-gray-100 flex-1 shadow-md ",
+    "p-4 border border-gray-300 rounded-md min-w-[250px] bg-card flex-1 shadow-md ",
     className
   );
   return (

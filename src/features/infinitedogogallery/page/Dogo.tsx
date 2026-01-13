@@ -42,13 +42,13 @@ const Dogo = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="w-screen h-screen overflow-y-scroll p-8 flex flex-col items-center bg-slate-800">
+    <div className="w-screen h-screen overflow-y-scroll p-8 flex flex-col items-center bg-background">
       {getStoredImagesToFetch().map((dogUrl: string, index: number) => (
-        <div key={index} className="mb-4 ">
+        <div key={index} className="mb-4 border border-border">
           <img
             src={dogUrl}
             alt={`Dog ${index}`}
-            className="w-64 h-64 object-cover rounded-md shadow-md"
+            className="w-64 h-64 object-cover rounded-md shadow-md "
           />
         </div>
       ))}

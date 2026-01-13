@@ -1,24 +1,16 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App.tsx";
-import { BrowserRouter, Routes, Route } from "react-router";
-import Autocomplete from "./features/autocomplete/page";
-import DndTodoList from "./features/todolist/page";
+import "./styles/globals.css";
 import DndTodoAppStateProvider from "./features/todolist/context/index.ts";
-import Dogo from "./features/infinitedogogallery/page/Dogo.tsx";
+import AppRoutes from "@/src/router/routes.tsx";
+import { ThemeProvider } from "@/src/features/shared/providers/theme/ThemeProvider.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <DndTodoAppStateProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route index path="/" element={<App />} />
-          <Route path="page/autocomplete" element={<Autocomplete />} />
-          <Route path="page/dndtodolist" element={<DndTodoList />} />
-          <Route path="page/dogogallery" element={<Dogo />} />
-        </Routes>
-      </BrowserRouter>
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <AppRoutes />
+      </ThemeProvider>
     </DndTodoAppStateProvider>
   </StrictMode>
 );
