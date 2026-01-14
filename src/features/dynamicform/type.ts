@@ -1,8 +1,9 @@
-export type DynamicForm = {
+export type DynamicFormType = {
   formId: string;
   title: string;
   description: string;
   submit: DynamicFormSubmit;
+  sections: DynamicFormSection[];
 };
 
 export type DynamicFormValidation = {
@@ -20,6 +21,7 @@ export type DynamicFormField = {
   placeholder?: string;
   required: boolean;
   options?: string[];
+  defaultValue?: string | number | boolean;
   validation?: DynamicFormValidation;
   dependsOn?: {
     fieldId: string;
@@ -33,22 +35,28 @@ export type DynamicFormSubmit = {
   method: DynamicFormMethod;
 };
 
-export enum DynamicFormFieldType {
-  TEXT = "text",
-  EMAIL = "email",
-  PASSWORD = "password",
-  NUMBER = "number",
-  SELECT = "select",
-  CHECKBOX = "checkbox",
-  RADIO = "radio",
-  TEXTAREA = "textarea",
-  DATE = "date",
-  TEL = "tel",
-  URL = "url",
-  FILE = "file",
-  CHECKBOX_GROUP = "checkbox-group",
-  RADIO_GROUP = "radio-group",
-}
+export type DynamicFormSection = {
+  id: string;
+  title: string;
+  description?: string;
+  fields: DynamicFormField[];
+};
+
+export type DynamicFormFieldType =
+  | "text"
+  | "email"
+  | "password"
+  | "number"
+  | "select"
+  | "checkbox"
+  | "radio"
+  | "textarea"
+  | "date"
+  | "tel"
+  | "url"
+  | "file"
+  | "checkbox-group"
+  | "radio-group";
 
 export enum DynamicFormMethod {
   POST = "POST",

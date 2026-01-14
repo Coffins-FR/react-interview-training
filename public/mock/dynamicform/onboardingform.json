@@ -112,7 +112,7 @@
         },
         {
           "id": "techStack",
-          "type": "multi-select",
+          "type": "checkbox-group",
           "label": "Preferred Tech Stack",
           "visibleWhen": {
             "field": "role",
@@ -151,7 +151,7 @@
           "id": "enableNotifications",
           "type": "toggle",
           "label": "Enable Notifications",
-          "defaultValue": true
+          "defaultValue": "true"
         },
         {
           "id": "notificationChannels",
