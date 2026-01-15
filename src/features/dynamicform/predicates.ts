@@ -1,4 +1,7 @@
-import type { DynamicFormType } from "@/src/features/dynamicform/type";
+import type {
+  DynamicFormField,
+  DynamicFormType,
+} from "@/src/features/dynamicform/type";
 
 export function isDynamicFormType(data: unknown): data is DynamicFormType {
   return (
@@ -33,17 +36,25 @@ export function isDynamicFormFieldArray(
 export function isTextFieldType(
   data: unknown
 ): data is "text" | "email" | "password" | "number" {
+  const type = (data as DynamicFormField).type;
   return (
-    typeof data === "string" &&
-    (data === "text" ||
-      data === "email" ||
-      data === "password" ||
-      data === "number")
+    typeof data === "object" &&
+    data !== null &&
+    (type === "text" ||
+      type === "email" ||
+      type === "password" ||
+      type === "number")
   );
 }
 
 export function isSelectFieldType(data: unknown): data is "select" {
-  return typeof data === "string" && data === "select";
+  return (
+    typeof data === "object" &&
+    data !== null &&
+    "type" in data &&
+    data.type === "select" &&
+    "options" in data
+  );
 }
 
 export function isCheckboxFieldType(
@@ -87,5 +98,9 @@ export function isDynamicFormMethod(
 }
 
 export function isToggleFieldType(data: unknown): data is "toggle" {
-  return typeof data === "string" && data === "toggle";
+  return (
+    typeof data === "object" &&
+    data !== null &&
+    (data as DynamicFormField).type === "toggle"
+  );
 }

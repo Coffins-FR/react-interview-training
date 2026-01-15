@@ -20,7 +20,11 @@ export type DynamicFormField = {
   type: DynamicFormFieldType;
   placeholder?: string;
   required: boolean;
-  options?: string[];
+  visibleWhen?: {
+    fieldId: string;
+    value: string | number | boolean;
+  };
+  options?: { label: string; value: string }[];
   defaultValue?: string | number | boolean;
   validation?: DynamicFormValidation;
   dependsOn?: {
@@ -56,7 +60,8 @@ export type DynamicFormFieldType =
   | "url"
   | "file"
   | "checkbox-group"
-  | "radio-group";
+  | "radio-group"
+  | "toggle";
 
 export enum DynamicFormMethod {
   POST = "POST",

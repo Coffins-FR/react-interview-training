@@ -18,6 +18,7 @@ import {
   isTextFieldType,
   isCheckboxFieldType,
   isToggleFieldType,
+  isSelectFieldType,
 } from "@/src/features/dynamicform/predicates";
 import { useAppForm } from "@/src/features/shared/hooks/useAppForm";
 import Button from "@/src/features/shared/components/Button/Button";
@@ -85,18 +86,24 @@ const DynamicForm = () => {
                           key={fieldID + subField.id}
                           name={subField.id}
                           children={(field) => {
-                            if (isTextFieldType(subField.type)) {
+                            if (isTextFieldType(subField)) {
                               return (
                                 <field.TextField
                                   name={subField.id}
                                   label={subField.label}
                                   placeholder={subField.placeholder}
                                   // required={subField.required}
-                                  type={subField.type}
+                                  type={
+                                    subField.type as
+                                      | "text"
+                                      | "email"
+                                      | "password"
+                                      | "number"
+                                  }
                                 />
                               );
                             }
-                            if (isCheckboxFieldType(subField.type)) {
+                            if (isCheckboxFieldType(subField)) {
                               return (
                                 <field.CheckboxField
                                   name={subField.id}
@@ -105,7 +112,7 @@ const DynamicForm = () => {
                                 />
                               );
                             }
-                            if (isToggleFieldType(subField.type)) {
+                            if (isToggleFieldType(subField)) {
                               return (
                                 <field.ToggleField
                                   name={subField.id}
@@ -113,6 +120,21 @@ const DynamicForm = () => {
                                   // required={subField.required}
                                   defaultChecked={
                                     subField.defaultValue as boolean
+                                  }
+                                />
+                              );
+                            }
+                            if (isSelectFieldType(subField)) {
+                              return (
+                                <field.SelectField
+                                  name={subField.id}
+                                  label={subField.label}
+                                  placeholder={subField.placeholder}
+                                  options={
+                                    subField.options as {
+                                      label: string;
+                                      value: string;
+                                    }[]
                                   }
                                 />
                               );

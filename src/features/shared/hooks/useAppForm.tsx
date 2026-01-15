@@ -6,6 +6,7 @@ import {
 import TextField from "@/src/features/shared/components/Form/TextField/TextField";
 import CheckboxField from "@/src/features/shared/components/Form/CheckboxField";
 import ToggleField from "@/src/features/shared/components/Form/ToggleField/ToggleField";
+import SelectField from "@/src/features/shared/components/Form/SelectField";
 
 export const { useAppForm, withForm } = createFormHook({
   fieldContext,
@@ -14,6 +15,7 @@ export const { useAppForm, withForm } = createFormHook({
     TextField,
     CheckboxField,
     ToggleField,
+    SelectField,
   },
   formComponents: {},
 });
